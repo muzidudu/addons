@@ -1,6 +1,7 @@
 # fastamin-addons
 FastAdmin插件模块
 
+
 ## 使用方法
 http://doc.fastadmin.net/docs/addons.html
 
