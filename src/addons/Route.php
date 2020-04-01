@@ -30,6 +30,7 @@ class Route
         $action = $action ? trim(call_user_func($filter, $action)) : 'index';
 
         Hook::listen('addon_begin', $request);
+
         if (!empty($addon) && !empty($controller) && !empty($action)) {
             $info = get_addon_info($addon);
             if (!$info) {
