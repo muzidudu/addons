@@ -4,6 +4,7 @@ namespace think\addons;
 
 use app\common\library\Auth;
 use think\Config;
+use think\Cookie;
 use think\Hook;
 use think\Lang;
 use think\Loader;
@@ -91,6 +92,8 @@ class Controller extends \think\Controller
         $this->controller = $controller ? call_user_func($filter, $controller) : 'index';
         $this->action = $action ? call_user_func($filter, $action) : 'index';
 
+        $this->request->addon = $this->addon;
+
         // 重置配置
         Config::set('template.view_path', ADDON_PATH . $this->addon . DS . 'view' . DS);
 
@@ -115,7 +118,7 @@ class Controller extends \think\Controller
 
         $this->auth = Auth::instance();
         // token
-        $token = $this->request->server('HTTP_TOKEN', $this->request->request('token', \think\Cookie::get('token')));
+        $token = $this->request->server('HTTP_TOKEN', $this->request->request('token', Cookie::get('token')));
 
         $path = 'addons/' . $this->addon . '/' . str_replace('.', '/', $this->controller) . '/' . $this->action;
         // 设置当前请求的URI
